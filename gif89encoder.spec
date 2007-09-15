@@ -36,7 +36,7 @@
 
 Name:           gif89encoder
 Version:        0.90
-Release:        %mkrel 0.b.2.0.2
+Release:        %mkrel 0.b.2.0.3
 Epoch:          0
 Summary:        Java class library for encoding GIF's
 License:        BSD
@@ -48,8 +48,6 @@ BuildRequires:  ant >= 0:1.6
 BuildRequires:  jpackage-utils >= 0:1.6
 %if %{gcj_support}
 BuildRequires:  java-gcj-compat-devel
-Requires(post): java-gcj-compat
-Requires(postun): java-gcj-compat
 %endif
 %if ! %{gcj_support}
 BuildArch:      noarch
