@@ -52,7 +52,6 @@ BuildRequires:  java-gcj-compat-devel
 %if ! %{gcj_support}
 BuildArch:      noarch
 %endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This Java class library for encoding GIF's is likely to be of 
