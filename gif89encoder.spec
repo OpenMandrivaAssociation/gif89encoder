@@ -36,7 +36,7 @@
 
 Name:           gif89encoder
 Version:        0.90
-Release:        %mkrel 0.b.2.0.6
+Release:        %mkrel 0.b.2.0.7
 Epoch:          0
 Summary:        Java class library for encoding GIF's
 License:        BSD
@@ -52,7 +52,6 @@ BuildRequires:  java-gcj-compat-devel
 %if ! %{gcj_support}
 BuildArch:      noarch
 %endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This Java class library for encoding GIF's is likely to be of 
@@ -87,8 +86,6 @@ pushd src
 popd
 
 %install
-%__rm -rf %{buildroot}
-
 # jars
 %__mkdir_p %{buildroot}%{_javadir}
 %__install -p -m 644 build/lib/%{name}.jar \
@@ -98,15 +95,12 @@ popd
 
 # javadoc
 %__mkdir_p %{buildroot}%{_javadocdir}/%{name}-%{version}
-%__cp -a build/javadocs/* %{buildroot}%{_javadocdir}/%{name}-%{version}
+cp -pr build/javadocs/* %{buildroot}%{_javadocdir}/%{name}-%{version}
 (cd %{buildroot}%{_javadocdir} && %__ln_s %{name}-%{version} %{name})
 
 %if %{gcj_support}
 %{_bindir}/aot-compile-rpm
 %endif
-
-%clean
-%__rm -rf %{buildroot}
 
 %if %{gcj_support}
 %post
@@ -140,3 +134,44 @@ fi
 %dir %{_javadocdir}/%{name}-%{version}
 %{_javadocdir}/%{name}-%{version}/*
 %dir %{_javadocdir}/%{name}
+
+
+%changelog
+* Thu Dec 09 2010 Oden Eriksson <oeriksson@mandriva.com> 0:0.90-0.b.2.0.6mdv2011.0
++ Revision: 618458
+- the mass rebuild of 2010.0 packages
+
+* Fri Sep 04 2009 Thierry Vignaud <tv@mandriva.org> 0:0.90-0.b.2.0.5mdv2010.0
++ Revision: 429202
+- rebuild
+
+* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 0:0.90-0.b.2.0.4mdv2009.0
++ Revision: 140737
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sun Dec 16 2007 Anssi Hannula <anssi@mandriva.org> 0:0.90-0.b.2.0.4mdv2008.1
++ Revision: 120884
+- buildrequire java-rpmbuild, i.e. build with icedtea on x86(_64)
+- rebuild to filter out autorequires of GCJ AOT objects
+- remove unnecessary Requires(post) on java-gcj-compat
+
+* Sat Aug 04 2007 David Walluck <walluck@mandriva.org> 0:0.90-0.b.2.0.2mdv2008.0
++ Revision: 58797
+- bump release
+
+* Thu Aug 02 2007 David Walluck <walluck@mandriva.org> 0:0.90-0.b.2.0.1mdv2008.0
++ Revision: 58334
+- Import gif89encoder
+
+
+
+* Sun Jul 15 2007 Alexander Kurtakov <akurtakov at active-lynx.com> 0:0.90-0.b.2.0.1mdv2008.0
+- Adapt for Mandriva
+
+* Wed Sep 20 2006 Ralph Apel <r.apel at r-apel.de> 0:0.90-0.b.2jpp
+- First JPP-1.7 release
+* Fri Feb 18 2005 David Walluck <david@jpackage> 0:0.90-0.b.1jpp
+- release
