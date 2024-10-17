@@ -40,7 +40,7 @@ Release:        %mkrel 0.b.2.0.7
 Epoch:          0
 Summary:        Java class library for encoding GIF's
 License:        BSD
-URL:            http://jmge.net/java/gifenc/
+URL:            https://jmge.net/java/gifenc/
 Group:          Development/Java
 Source0:        http://jmge.net/java/gifenc/Gif89Encoder090b.zip
 Requires:       jpackage-utils >= 0:1.6
